@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unwritten Logic</title>
+
+  <!-- Luxury Editorial + Cursive Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --dark: #322D29;
+      --accent: #72383D;
+      --taupe: #AC9C8D;
+      --light-taupe: #D1C7BD;
+      --grey: #D9D9D9;
+      --cream: #EFE9E1;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 60px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--grey);
+    }
+
+    /* Cursive brand logo */
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 34px;
+      letter-spacing: 1px;
+      color: var(--accent);
+    }
+
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 1px;
+      bottom: -6px;
+      left: 0;
+      background: var(--accent);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(120deg, var(--accent), var(--taupe));
+      color: white;
+      padding: 0 20px;
+    }
+
+    /* Cursive hero title for luxe feminine feel */
+    .hero h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 60px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 16px;
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+
+    .cta {
+      margin-top: 40px;
+      padding: 14px 34px;
+      background: white;
+      color: var(--accent);
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    .cta:hover {
+      background: var(--dark);
+      color: white;
+    }
+
+    section {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .alt-section {
+      background: var(--light-taupe);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      margin-bottom: 40px;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      border: 1px solid var(--grey);
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      top: 0;
+      left: 0;
+      background: linear-gradient(to right, var(--accent), var(--taupe));
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(114,56,61,0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid var(--grey);
+      background: white;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Unwritten Logic</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#fiction">Fiction</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>I am a Writer*</h2>
+  <p>Anything you say or do may be used in a story.</p>
+  <a href="#portfolio" class="cta">Explore Work</a>
+</section>
+
+<section id="about" class="alt-section">
+  <h3 class="section-title">About</h3>
+
+  <p style="max-width:700px; font-family:'Libre Baskerville', serif; line-height:1.9;">
+    From a very young age, I was certain of one thing. I was born to tell stories. As, Lord Byron said, a drop of ink may make a million think, and I think I understood that long before I could put it into words.
+    <br><br>
+    As I grew up, I chose to turn that passion into something more. Something I could carry with me and share with the world.
+    <br><br>
+    But, this is not where I bore you with the professional details or a list of achievements. This is where the magic happens and I let my imagination take over.
+    <br><br>
+    If you are looking for tips and insights from what I have learned in the creative industry, you can explore my portfolio. If you are here to see what it feels like inside my mind, I would recommend the fiction section.
+    <br><br>
+    Because in the end, a writer is a world trapped inside a person, and this is mine.
+  </p>
+</section>
+
+<section id="portfolio">
+  <h3 class="section-title">Selected Work</h3>
+  <div class="portfolio-grid">
+    <div class="card">Dubai Real Estate Market Report, Q1 2026</div>
+    <div class="card">SEO Strategy for Property Management</div>
+    <div class="card">Long-Form Editorial on Investor ROI</div>
+  </div>
+</section>
+
+<section id="fiction" class="alt-section">
+  <h3 class="section-title">Fiction</h3>
+  <div class="portfolio-grid">
+    <div class="card">The Girl Who Forgot Time</div>
+    <div class="card">A Quiet Room with No Clocks</div>
+    <div class="card">Notes Left Unsent</div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Unwritten Logic</p>
+</footer>
+
+</body>
+</html>
