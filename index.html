@@ -5,229 +5,865 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unwritten Logic</title>
 
-  <!-- Luxury Editorial + Cursive Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&family=Italiana&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --dark: #322D29;
-      --accent: #72383D;
-      --taupe: #AC9C8D;
-      --light-taupe: #D1C7BD;
-      --grey: #D9D9D9;
-      --cream: #EFE9E1;
+      --black:   #1a1a1a;
+      --lime:    #9CAD8C;
+      --pink:    #F6B0BB;
+      --electric:#7E8C69;
+      --cream:   #F1C8CB;
+      --orange:  #9CAD8C;
+      --lavender:#F1C8CB;
+      --off-white:#ECE0DA;
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--cream);
-      color: var(--dark);
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--off-white);
+      color: var(--black);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9000;
+      opacity: 0.6;
+    }
+
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--lime);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: width 0.2s, height 0.2s, background 0.2s;
+      mix-blend-mode: normal;
+    }
+    .cursor-ring {
+      width: 40px; height: 40px;
+      border: 1.5px solid var(--lime);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: normal;
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 25px 60px;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--grey);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 50px;
+      background: rgba(236,224,218,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(156,173,140,0.25);
     }
 
-    /* Cursive brand logo */
-    header h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 34px;
-      letter-spacing: 1px;
-      color: var(--accent);
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--lime);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
+
+    nav { display: flex; align-items: center; gap: 32px; }
 
     nav a {
-      margin-left: 30px;
-      text-decoration: none;
-      color: var(--dark);
-      font-size: 13px;
-      letter-spacing: 1px;
+      font-family: 'Syne Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      position: relative;
+      text-decoration: none;
+      color: rgba(46,50,34,0.6);
+      transition: color 0.2s;
     }
+    nav a:hover { color: var(--lime); }
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 1px;
-      bottom: -6px;
-      left: 0;
-      background: var(--accent);
-      transition: 0.3s;
+    .nav-cta {
+      padding: 9px 22px;
+      background: var(--lime);
+      color: var(--black) !important;
+      border-radius: 4px;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.15s !important;
     }
+    .nav-cta:hover { background: var(--pink) !important; color: var(--black) !important; transform: rotate(-1deg); }
 
-    nav a:hover::after { width: 100%; }
-
+    /* HERO */
     .hero {
-      height: 100vh;
+      min-height: 100vh;
+      padding: 140px 50px 90px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(120deg, var(--accent), var(--taupe));
-      color: white;
-      padding: 0 20px;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      background: #9CAD8C;
     }
 
-    /* Cursive hero title for luxe feminine feel */
-    .hero h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 60px;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .blob-1 { width: 600px; height: 600px; background: #F6B0BB; top: -100px; right: -150px; animation-delay: 0s; }
+    .blob-2 { width: 400px; height: 400px; background: #ECE0DA; bottom: 50px; left: -100px; animation-delay: -4s; }
+    .blob-3 { width: 350px; height: 350px; background: #7E8C69; top: 30%; left: 40%; animation-delay: -8s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(40px, 30px) scale(1.08); }
     }
 
-    .hero p {
-      max-width: 600px;
-      font-family: 'Libre Baskerville', serif;
-      font-size: 16px;
-      opacity: 0.9;
-      line-height: 1.8;
-    }
-
-    .cta {
-      margin-top: 40px;
-      padding: 14px 34px;
-      background: white;
-      color: var(--accent);
-      border-radius: 40px;
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 1px;
+    .hero-eyebrow {
+      font-family: 'Syne Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      transition: 0.3s;
+      color: #2E3222;
+      margin-bottom: 24px;
+      position: relative; z-index: 2;
     }
 
-    .cta:hover {
-      background: var(--dark);
-      color: white;
+    .hero-headline {
+      font-family: 'Italiana', serif;
+      font-size: clamp(72px, 12vw, 180px);
+      line-height: 0.88;
+      position: relative; z-index: 2;
     }
 
-    section {
-      padding: 100px 60px;
-      max-width: 1200px;
-      margin: auto;
+    .hero-headline .line-1 { color: #2E3222; display: block; }
+    .hero-headline .line-2 {
+      color: transparent;
+      -webkit-text-stroke: 3px #C4506A;
+      display: block;
+    }
+    .hero-headline .line-3 {
+      color: var(--off-white);
+      display: block;
+      font-style: italic;
     }
 
-    .alt-section {
-      background: var(--light-taupe);
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      margin-bottom: 40px;
-      color: var(--accent);
-      letter-spacing: 1px;
-    }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 60px;
+      position: relative; z-index: 2;
+      flex-wrap: wrap;
       gap: 30px;
     }
 
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 18px;
-      border: 1px solid var(--grey);
-      transition: 0.4s;
-      position: relative;
-      overflow: hidden;
+    .hero-subtext {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(46,50,34,0.7);
+      max-width: 340px;
     }
+    .hero-subtext em { color: #2E3222; font-style: italic; }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 3px;
-      top: 0;
-      left: 0;
-      background: linear-gradient(to right, var(--accent), var(--taupe));
+    .hero-actions { display: flex; gap: 14px; align-items: center; }
+
+    .btn-lime {
+      padding: 14px 34px;
+      background: var(--lime);
+      color: #2E3222;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
     }
+    .btn-lime:hover { background: #2E3222; color: var(--off-white); transform: rotate(1deg) translateY(-2px); }
 
-    .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(114,56,61,0.2);
+    .btn-outline {
+      padding: 13px 30px;
+      border: 1.5px solid rgba(46,50,34,0.3);
+      color: #2E3222;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: border-color 0.2s, color 0.2s;
     }
+    .btn-outline:hover { border-color: #2E3222; color: #2E3222; }
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      border-top: 1px solid var(--grey);
-      background: white;
+    .scroll-tag {
+      font-family: 'Syne Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: rgba(46,50,34,0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .scroll-tag::before { content: ''; width: 30px; height: 1px; background: rgba(46,50,34,0.3); }
+
+    /* MARQUEE */
+    .marquee-strip { background: var(--lime); padding: 13px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-inner { display: inline-block; animation: marquee 22s linear infinite; }
+    .marquee-inner span {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
       font-size: 13px;
-      letter-spacing: 1px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin: 0 24px;
+    }
+    .marquee-inner .sep { color: #7E8C69; font-size: 18px; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ABOUT */
+    .about-wrap { background: var(--off-white); color: var(--black); }
+    .about-inner {
+      max-width: 1300px; margin: 0 auto; padding: 120px 50px;
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;
     }
 
+    .about-shape {
+      width: 100%; max-width: 420px; aspect-ratio: 3/4;
+      background: #7E8C69;
+      border-radius: 200px 200px 20px 20px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-shape-text {
+      font-family: 'Italiana', serif;
+      font-size: 80px; color: var(--off-white); opacity: 0.45;
+      transform: rotate(-15deg); user-select: none;
+    }
+    .about-sticker {
+      position: absolute; bottom: -18px; right: -18px;
+      background: #7E8C69; color: var(--off-white);
+      width: 120px; height: 120px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.4; padding: 14px;
+      animation: spin-slow 18s linear infinite;
+    }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+    .about-year {
+      position: absolute; top: 28px; left: -20px;
+      font-family: 'Syne Mono', monospace; font-size: 12px; letter-spacing: 0.15em;
+      background: #F6B0BB; color: var(--black);
+      padding: 8px 14px; border-radius: 4px; font-weight: 700;
+    }
+
+    .eyebrow {
+      font-family: 'Syne Mono', monospace;
+      font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 16px; display: block;
+    }
+
+    .section-title {
+      font-family: 'Italiana', serif;
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 1; margin-bottom: 36px; color: var(--black);
+    }
+    .section-title .accent { color: var(--pink); font-style: italic; }
+
+    .about-body p {
+      font-size: 16px; line-height: 1.85; color: #4a3f3b; margin-bottom: 18px;
+    }
+    .about-body p:first-child::first-letter {
+      font-family: 'Italiana', serif; font-size: 78px;
+      float: left; line-height: 0.7; margin-right: 10px; margin-top: 10px; color: var(--pink);
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .tag {
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 8px 18px; border-radius: 3px;
+      background: #7E8C69; color: var(--off-white);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .tag:hover { background: var(--pink); color: var(--black); transform: rotate(-1deg); }
+
+    /* SERVICES */
+    .services-wrap { background: #7E8C69; padding: 120px 50px; }
+    .services-inner { max-width: 1300px; margin: 0 auto; }
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+
+    .service-card {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      padding: 40px 32px;
+      transition: background 0.3s, transform 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 3px; background: var(--lime);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card:hover { background: rgba(255,255,255,0.28); transform: translateY(-4px); }
+
+    .service-num {
+      font-family: 'Syne Mono', monospace; font-size: 11px;
+      color: var(--off-white); letter-spacing: 0.15em; margin-bottom: 28px; opacity: 0.8;
+    }
+    .service-card h4 { font-family: 'Italiana', serif; font-size: 26px; color: var(--off-white); margin-bottom: 14px; line-height: 1.2; }
+    .service-card p { font-size: 13px; line-height: 1.7; color: rgba(236,224,218,0.9); }
+
+    /* PORTFOLIO */
+    .portfolio-wrap { background: #F1C8CB; color: var(--black); padding: 120px 50px; }
+    .portfolio-inner { max-width: 1300px; margin: 0 auto; }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .work-card {
+      background: white; border-radius: 12px; padding: 36px 32px;
+      text-decoration: none; color: inherit; display: block;
+      position: relative; overflow: hidden;
+      transition: transform 0.35s, box-shadow 0.35s;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .work-card:hover { transform: translateY(-8px) rotate(0.5deg); box-shadow: 0 24px 50px rgba(0,0,0,0.12); }
+    .work-card.w-8  { grid-column: span 8; }
+    .work-card.w-4  { grid-column: span 4; }
+    .work-card.w-6  { grid-column: span 6; }
+    .work-card.dark { background: #7E8C69; color: var(--off-white); }
+    .work-card.hot  { background: var(--pink); color: var(--black); }
+
+    .work-type {
+      font-family: 'Syne Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 18px; display: block; opacity: 0.55;
+    }
+    .work-card h4 { font-family: 'Italiana', serif; font-size: 28px; line-height: 1.2; margin-bottom: 14px; }
+    .work-card p  { font-size: 13px; line-height: 1.7; opacity: 0.6; max-width: 480px; }
+
+    .work-arrow {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 28px;
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .work-card.dark .work-arrow { color: var(--lime); }
+    .work-card.hot  .work-arrow { color: var(--black); opacity: 0.75; }
+    .work-card:not(.dark):not(.hot) .work-arrow { color: var(--pink); }
+
+    /* PULL QUOTE */
+    .quote-wrap {
+      background: var(--pink); padding: 100px 50px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .quote-wrap::before {
+      content: '\275D';
+      position: absolute; font-family: 'Italiana', serif; font-size: 400px;
+      color: rgba(46,50,34,0.06); top: -80px; left: 50%;
+      transform: translateX(-50%); pointer-events: none; line-height: 1;
+    }
+    .quote-wrap blockquote {
+      font-family: 'Italiana', serif; font-size: clamp(32px, 5vw, 64px);
+      color: var(--black); max-width: 900px; margin: 0 auto 20px; line-height: 1.2; position: relative; z-index: 1;
+    }
+    .quote-wrap cite {
+      font-family: 'Syne Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(46,50,34,0.6); font-style: normal;
+    }
+
+    /* FICTION */
+    .blog-wrap { background: #9CAD8C; padding: 120px 50px; }
+    .blog-inner { max-width: 1300px; margin: 0 auto; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+    .blog-card {
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 12px; padding: 36px 30px;
+      transition: background 0.3s, transform 0.3s, border-color 0.3s; cursor: pointer;
+    }
+    .blog-card:hover { background: rgba(255,255,255,0.3); border-color: var(--off-white); transform: translateY(-6px); }
+    .blog-card:nth-child(2):hover { background: rgba(246,176,187,0.3); border-color: var(--pink); }
+    .blog-card:nth-child(5):hover { background: rgba(126,140,105,0.3); border-color: var(--electric); }
+
+    .blog-genre {
+      font-family: 'Syne Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--lime); margin-bottom: 16px; display: block;
+    }
+    .blog-card:nth-child(2) .blog-genre { color: var(--pink); }
+    .blog-card:nth-child(3) .blog-genre { color: var(--lavender); }
+    .blog-card:nth-child(4) .blog-genre { color: var(--orange); }
+    .blog-card:nth-child(5) .blog-genre { color: var(--electric); }
+
+    .blog-card h4 { font-family: 'Italiana', serif; font-size: 26px; color: var(--off-white); line-height: 1.25; margin-bottom: 14px; }
+    .blog-card p  { font-size: 13px; line-height: 1.7; color: rgba(236,224,218,0.85); }
+
+    .blog-read {
+      display: inline-block; margin-top: 22px;
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); text-decoration: none;
+    }
+    .blog-card:nth-child(2) .blog-read { color: var(--pink); }
+    .blog-card:nth-child(3) .blog-read { color: var(--lavender); }
+    .blog-card:nth-child(4) .blog-read { color: var(--orange); }
+    .blog-card:nth-child(5) .blog-read { color: var(--electric); }
+
+
+    /* ANAIS NIN QUOTE */
+    .anais-wrap {
+      background: var(--off-white);
+      padding: 110px 50px;
+      overflow: hidden;
+      position: relative;
+    }
+    .anais-inner {
+      max-width: 1300px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .anais-ink {
+      font-family: 'Italiana', serif;
+      font-size: clamp(180px, 28vw, 380px);
+      color: rgba(156,173,140,0.1);
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+      white-space: nowrap;
+      letter-spacing: -0.04em;
+    }
+    .anais-content {
+      text-align: center;
+      position: relative; z-index: 2;
+    }
+    .anais-eyebrow {
+      font-family: 'Syne Mono', monospace;
+      font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+      color: #9CAD8C; display: block; margin-bottom: 28px;
+    }
+    .anais-quote {
+      font-family: 'Italiana', serif;
+      font-size: clamp(52px, 8vw, 110px);
+      line-height: 1.05;
+      color: #2E3222;
+      margin-bottom: 28px;
+    }
+    .anais-quote em {
+      color: #F6B0BB;
+      font-style: italic;
+      -webkit-text-stroke: 1px #F6B0BB;
+    }
+    .anais-cite {
+      font-family: 'Syne Mono', monospace;
+      font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(46,50,34,0.45); font-style: normal;
+      display: block;
+    }
+
+    /* CONTACT */
+    .contact-wrap { background: var(--off-white); color: var(--black); padding: 120px 50px; }
+    .contact-inner {
+      max-width: 1300px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .contact-left > p { font-size: 16px; line-height: 1.8; color: #5a4e4a; margin-bottom: 40px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none; color: #2E3222;
+      font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
+      padding: 16px 22px; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--pink); color: var(--pink); background: rgba(246,176,187,0.15); transform: translateX(4px); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 18px; }
+    .form-label { font-family: 'Syne Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(0,0,0,0.4); display: block; margin-bottom: 8px; }
+    .form-input, .form-textarea {
+      width: 100%; padding: 14px 18px;
+      background: white; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--black);
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--pink); }
+    .form-textarea { min-height: 140px; resize: vertical; }
+    .form-submit {
+      padding: 15px 36px; background: #7E8C69; color: #2E3222;
+      font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      border: none; border-radius: 6px; cursor: pointer;
+      transition: background 0.2s, transform 0.2s; align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--pink); color: var(--black); transform: rotate(1deg) translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: #7E8C69; padding: 50px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+    }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-family: 'Syne Mono', monospace; font-size: 10px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(46,50,34,0.4); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: white; }
+    footer p { font-family: 'Syne Mono', monospace; font-size: 10px; color: rgba(236,224,218,0.6); letter-spacing: 0.1em; }
+
+    .section-header { margin-bottom: 60px; }
+
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; animation: fadeIn 0.7s ease 0.3s forwards; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .work-card.w-8, .work-card.w-4, .work-card.w-6 { grid-column: span 1; }
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 760px) {
+      header { padding: 18px 24px; }
+      nav { display: none; }
+      .hero { padding: 120px 24px 70px; }
+      .about-inner, .contact-inner { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
+      .about-shape { max-height: 280px; }
+      .services-wrap, .portfolio-wrap, .blog-wrap, .contact-wrap { padding: 80px 24px; }
+      .services-grid, .portfolio-grid, .blog-grid { grid-template-columns: 1fr; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
 <header>
-  <h1>Unwritten Logic</h1>
+  <a href="#" class="logo">Unwritten Logic</a>
   <nav>
-    <a href="#">Home</a>
     <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
+    <a href="#work">Portfolio</a>
+    <a href="#services">Services</a>
     <a href="#fiction">Fiction</a>
+    <a href="#contact" class="nav-cta">Let's Talk</a>
   </nav>
 </header>
 
 <section class="hero">
-  <h2>I am a Writer*</h2>
-  <p>Anything you say or do may be used in a story.</p>
-  <a href="#portfolio" class="cta">Explore Work</a>
-</section>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
 
-<section id="about" class="alt-section">
-  <h3 class="section-title">About</h3>
+  <span class="hero-eyebrow">✦ Writer · Editor · Storyteller</span>
 
-  <p style="max-width:700px; font-family:'Libre Baskerville', serif; line-height:1.9;">
-    From a very young age, I was certain of one thing. I was born to tell stories. As, Lord Byron said, a drop of ink may make a million think, and I think I understood that long before I could put it into words.
-    <br><br>
-    As I grew up, I chose to turn that passion into something more. Something I could carry with me and share with the world.
-    <br><br>
-    But, this is not where I bore you with the professional details or a list of achievements. This is where the magic happens and I let my imagination take over.
-    <br><br>
-    If you are looking for tips and insights from what I have learned in the creative industry, you can explore my portfolio. If you are here to see what it feels like inside my mind, I would recommend the fiction section.
-    <br><br>
-    Because in the end, a writer is a world trapped inside a person, and this is mine.
-  </p>
-</section>
+  <h1 class="hero-headline">
+    <span class="line-1">I am a</span>
+    <span class="line-2">Writer*</span>
 
-<section id="portfolio">
-  <h3 class="section-title">Selected Work</h3>
-  <div class="portfolio-grid">
-    <div class="card">Dubai Real Estate Market Report, Q1 2026</div>
-    <div class="card">SEO Strategy for Property Management</div>
-    <div class="card">Long-Form Editorial on Investor ROI</div>
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-subtext">
+      <em>Anything you say or do</em><br>may be used in a story.
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-lime">Explore Work</a>
+      <a href="#contact" class="btn-outline">Work With Me</a>
+    </div>
+    <span class="scroll-tag">Scroll to explore</span>
   </div>
 </section>
 
-<section id="fiction" class="alt-section">
-  <h3 class="section-title">Fiction</h3>
-  <div class="portfolio-grid">
-    <div class="card">The Girl Who Forgot Time</div>
-    <div class="card">A Quiet Room with No Clocks</div>
-    <div class="card">Notes Left Unsent</div>
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>SEO Content Strategy</span><span class="sep">✦</span>
+    <span>Long-Form Editorial</span><span class="sep">✦</span>
+    <span>Landing Page Copy</span><span class="sep">✦</span>
+    <span>Keyword Research</span><span class="sep">✦</span>
+    <span>YouTube Scripts</span><span class="sep">✦</span>
+    <span>Email Marketing</span><span class="sep">✦</span>
+    <span>Meta &amp; Paid Ad Copy</span><span class="sep">✦</span>
+    <span>Product Descriptions</span><span class="sep">✦</span>
+    <span>SEO Content Strategy</span><span class="sep">✦</span>
+    <span>Long-Form Editorial</span><span class="sep">✦</span>
+    <span>Landing Page Copy</span><span class="sep">✦</span>
+    <span>Keyword Research</span><span class="sep">✦</span>
+    <span>YouTube Scripts</span><span class="sep">✦</span>
+    <span>Email Marketing</span><span class="sep">✦</span>
+    <span>Meta &amp; Paid Ad Copy</span><span class="sep">✦</span>
+    <span>Product Descriptions</span><span class="sep">✦</span>
   </div>
-</section>
+</div>
+
+<div class="about-wrap" id="about">
+  <div class="about-inner">
+    <div class="about-left fade-up" style="position:relative;">
+      <div class="about-shape">
+        <span class="about-shape-text">Write</span>
+        <div class="about-sticker">Born to<br>tell<br>stories ✦</div>
+      </div>
+      <span class="about-year">Est. 2018</span>
+    </div>
+    <div class="about-right fade-up">
+      <span class="eyebrow">About Me</span>
+      <h2 class="section-title">A world<br>inside a<br><span class="accent">person</span></h2>
+      <div class="about-body">
+        <p>From a very young age, I was certain of one thing. I was born to tell stories. As Lord Byron said, a drop of ink may make a million think and I understood that long before I could put it into words.</p>
+        <p>As I grew up, I chose to turn that passion into something more. Something I could carry with me and share with the world.</p>
+        <p>But this is not where I bore you with professional details or a list of achievements. This is where the magic happens and I let my imagination take over.</p>
+        <p>If you're looking for insights from the creative industry, explore my portfolio. If you're here to see what it feels like inside my mind I'd recommend the fiction section.</p>
+      </div>
+      <div class="tag-row">
+        <span class="tag">SEO Strategy</span>
+        <span class="tag">Long-Form Editorial</span>
+        <span class="tag">Landing Page Copy</span>
+        <span class="tag">Keyword Research</span>
+        <span class="tag">YouTube Scripts</span>
+        <span class="tag">Email Marketing</span>
+        <span class="tag">Paid Ad Copy</span>
+        <span class="tag">Fiction</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="services-wrap" id="services">
+  <div class="services-inner">
+    <div class="section-header fade-up" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;">
+      <div>
+        <span class="eyebrow">What I Do</span>
+        <h2 class="section-title" style="color:var(--cream); margin-bottom:0;">Words that<br><span class="accent">work</span></h2>
+      </div>
+      <a href="#contact" class="btn-lime" style="margin-bottom:8px;">Hire Me</a>
+    </div>
+    <div class="services-grid fade-up">
+      <div class="service-card">
+        <div class="service-num">01 /</div>
+        <h4>SEO Content Strategy</h4>
+        <p>Keyword research, intent mapping, and on-page SEO built into content that actually ranks and reads beautifully.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02 /</div>
+        <h4>Long-Form Editorial</h4>
+        <p>Articles, essays, and thought leadership pieces that position you as the voice worth listening to.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03 /</div>
+        <h4>Copy &amp; Ad Writing</h4>
+        <p>Landing pages, meta ads, product descriptions, and email sequences that convert without sounding like a robot wrote them.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04 /</div>
+        <h4>Scripts &amp; Social</h4>
+        <p>YouTube scripts, newsletter copy, and brand voice guides that make your content feel unmistakably you.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="portfolio-wrap" id="work">
+  <div class="portfolio-inner">
+    <div class="section-header fade-up">
+      <span class="eyebrow" style="color:var(--pink);">Selected Work</span>
+      <h2 class="section-title">The work<br>speaks for <span class="accent">itself</span></h2>
+    </div>
+    <div class="portfolio-grid fade-up">
+      <div class="work-card dark w-8">
+        <span class="work-type">Coming Soon</span>
+        <h4>More Work on the Way</h4>
+        <p>This space is reserved for something worth reading. Check back soon, or reach out to see samples directly.</p>
+        <span class="work-arrow">Get In Touch →</span>
+      </div>
+      <div class="work-card hot w-4">
+        <span class="work-type">Brand Copywriting</span>
+        <h4>Voice &amp; Tone Guide for a Luxury Brand</h4>
+        <p>Building a distinct brand personality from scratch.</p>
+        <span class="work-arrow">Read More →</span>
+      </div>
+      <div class="work-card w-6">
+        <span class="work-type">Long-Form Editorial</span>
+        <h4>Long-Form Editorial on Investor ROI</h4>
+        <p>Dissecting what actually drives returns, beyond the headline numbers.</p>
+        <span class="work-arrow">Read More →</span>
+      </div>
+      <div class="work-card w-6">
+        <span class="work-type">SEO Strategy</span>
+        <h4>Keyword Research &amp; Intent Mapping</h4>
+        <p>A strategic SEO content plan built around search intent, not just volume.</p>
+        <span class="work-arrow">Read More →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="quote-wrap">
+  <blockquote>"A writer is a world trapped inside a person."</blockquote>
+  <cite>  Unwritten Logic</cite>
+</div>
+
+<div class="blog-wrap" id="fiction">
+  <div class="blog-inner">
+    <div class="section-header fade-up">
+      <span class="eyebrow">Fiction & Essays</span>
+      <h2 class="section-title" style="color:var(--cream);">Inside my <span style="color:#7E8C69; font-style:italic;">mind</span></h2>
+    </div>
+    <div class="blog-grid fade-up">
+      <div class="blog-card">
+        <span class="blog-genre">Short Fiction</span>
+        <h4>The Girl Who Forgot Time</h4>
+        <p>She could remember every word ever spoken to her. Just not when or by whom.</p>
+        <span class="blog-read">Read Story →</span>
+      </div>
+      <div class="blog-card">
+        <span class="blog-genre">Short Fiction</span>
+        <h4>A Quiet Room with No Clocks</h4>
+        <p>Some places exist outside of time. She had been looking for this one her whole life.</p>
+        <span class="blog-read">Read Story →</span>
+      </div>
+      <div class="blog-card">
+        <span class="blog-genre">Epistolary</span>
+        <h4>Notes Left Unsent</h4>
+        <p>A collection of letters to people who will never read them. Maybe that was always the point.</p>
+        <span class="blog-read">Read Story →</span>
+      </div>
+      <div class="blog-card">
+        <span class="blog-genre">Essay</span>
+        <h4>On Writing as a Form of Survival</h4>
+        <p>What happens when the stories you write are the only way you know how to feel things.</p>
+        <span class="blog-read">Read Essay →</span>
+      </div>
+      <div class="blog-card">
+        <span class="blog-genre">Personal Essay</span>
+        <h4>The Spaces Between Words</h4>
+        <p>Learning to sit with silence and finding that the pauses matter just as much as the prose.</p>
+        <span class="blog-read">Read Essay →</span>
+      </div>
+      <div class="blog-card">
+        <span class="blog-genre">Flash Fiction</span>
+        <h4>Tuesday, 3AM</h4>
+        <p>The city looks different when everyone else is asleep. She learned this the hard way.</p>
+        <span class="blog-read">Read Story →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="anais-wrap">
+  <div class="anais-inner">
+    <div class="anais-ink">ink</div>
+    <div class="anais-content">
+      <span class="anais-eyebrow">✦ Words to live by</span>
+      <blockquote class="anais-quote">We write to taste<br>life <em>twice</em></blockquote>
+      <cite class="anais-cite">Anais Nin</cite>
+    </div>
+  </div>
+</div>
+
+<div class="contact-wrap" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left fade-up">
+      <span class="eyebrow">Get In Touch</span>
+      <h2 class="section-title">Drop me<br>a line.<br><span class="accent">I write back.</span></h2>
+      <p>Whether you need sharp editorial copy, a content strategy that actually works, or just want to talk about stories I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="mailto:aishaaftab.16@gmail.com" class="contact-link">✉️ &nbsp; aishaaftab.16@gmail.com</a>
+        <a href="https://www.linkedin.com/in/aisha-aftab" target="_blank" class="contact-link">💼 &nbsp; linkedin.com/in/aisha-aftab</a>
+        <a href="https://twitter.com" target="_blank" class="contact-link">🐦 &nbsp; @unwrittenlogic</a>
+      </div>
+    </div>
+    <div class="fade-up">
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div>
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="What shall I call you?">
+        </div>
+        <div>
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="Where can I reach you?">
+        </div>
+        <div>
+          <label class="form-label">What's On Your Mind?</label>
+          <textarea class="form-textarea" placeholder="Tell me about your project, idea, or just say hello..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message ✦</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 <footer>
-  <p>© 2026 Unwritten Logic</p>
+  <a href="#" class="logo">Unwritten Logic</a>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#work">Portfolio</a>
+    <a href="#fiction">Fiction</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p>© 2018 Unwritten Logic. All rights reserved.</p>
 </footer>
 
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function animateCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  document.querySelectorAll('a, button, .work-card, .blog-card, .service-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.width = '58px'; ring.style.height = '58px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; ring.style.width = '40px'; ring.style.height = '40px'; });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.style.padding = window.scrollY > 60 ? '14px 50px' : '22px 50px';
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Se
