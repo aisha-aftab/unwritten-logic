@@ -556,6 +556,112 @@
       .services-grid, .portfolio-grid, .blog-grid { grid-template-columns: 1fr; }
       footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
     }
+    /* INSIGHTS BLOG SECTION */
+    .insights-wrap {
+      background: var(--off-white);
+      padding: 120px 0;
+    }
+    .insights-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 50px;
+    }
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .insight-card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px 28px;
+      border: 1px solid rgba(156,173,140,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+      color: inherit;
+      cursor: none;
+    }
+    .insight-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(156,173,140,0.18);
+    }
+    .insight-tag {
+      font-family: 'Syne Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      background: rgba(156,173,140,0.12);
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      width: fit-content;
+    }
+    .insight-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.35;
+      color: var(--black);
+    }
+    .insight-excerpt {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(46,50,34,0.6);
+      flex: 1;
+    }
+    .insight-meta {
+      font-family: 'Syne Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: rgba(46,50,34,0.4);
+      text-transform: uppercase;
+    }
+    .insight-read {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lime);
+    }
+    .insight-card-placeholder {
+      background: rgba(156,173,140,0.08);
+      border: 1.5px dashed rgba(156,173,140,0.3);
+      border-radius: 12px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      min-height: 220px;
+    }
+    .insight-card-placeholder p {
+      font-size: 13px;
+      color: rgba(46,50,34,0.4);
+      line-height: 1.6;
+    }
+    .insights-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+    #blog-loading {
+      text-align: center;
+      padding: 40px;
+      font-family: 'Syne Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(46,50,34,0.4);
+      text-transform: uppercase;
+    }
+    @media (max-width: 1100px) { .insights-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 760px) { .insights-grid { grid-template-columns: 1fr; } .insights-inner { padding: 0 24px; } }
   </style>
 </head>
 <body>
@@ -570,6 +676,7 @@
     <a href="#work">Portfolio</a>
     <a href="#services">Services</a>
     <a href="#fiction">Fiction</a>
+    <a href="#blog">Blog</a>
     <a href="#contact" class="nav-cta">Let's Talk</a>
   </nav>
 </header>
@@ -774,6 +881,20 @@
 </div>
 
 
+<div class="insights-wrap" id="blog">
+  <div class="insights-inner">
+    <div class="section-header fade-up">
+      <span class="eyebrow">From the Blog</span>
+      <h2 class="section-title">Writing that<br>makes you <span class="accent">think</span></h2>
+    </div>
+    <div id="blog-loading">Loading latest posts...</div>
+    <div class="insights-grid fade-up" id="blog-grid" style="display:none;"></div>
+    <div class="insights-cta fade-up">
+      <a href="https://blog.unwrittenlogic.com" target="_blank" class="btn-lime">Read All Posts</a>
+    </div>
+  </div>
+</div>
+
 <div class="anais-wrap">
   <div class="anais-inner">
     <div class="anais-ink">ink</div>
@@ -863,7 +984,93 @@
     header.style.padding = window.scrollY > 60 ? '14px 50px' : '22px 50px';
   });
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = 'Se
+  // ── BLOG RSS FEED ─────────────────────────────────────────────────────────
+  async function loadBlogPosts() {
+    const grid = document.getElementById('blog-grid');
+    const loading = document.getElementById('blog-loading');
+    const RSS_URL = 'https://blog.unwrittenlogic.com/feed';
+    const PROXY   = 'https://api.allorigins.win/get?url=' + encodeURIComponent(RSS_URL);
+
+    try {
+      const res  = await fetch(PROXY);
+      const data = await res.json();
+      const parser = new DOMParser();
+      const xml  = parser.parseFromString(data.contents, 'text/xml');
+      const items = Array.from(xml.querySelectorAll('item')).slice(0, 6);
+
+      if (!items.length) throw new Error('No posts');
+
+      grid.innerHTML = '';
+
+      items.forEach(item => {
+        const title   = item.querySelector('title')?.textContent || 'Untitled';
+        const link    = item.querySelector('link')?.textContent || '#';
+        const pubDate = item.querySelector('pubDate')?.textContent || '';
+        const desc    = item.querySelector('description')?.textContent || '';
+
+        // Strip HTML from description
+        const tmp = document.createElement('div');
+        tmp.innerHTML = desc;
+        const excerpt = (tmp.textContent || '').slice(0, 120).trim() + '...';
+
+        // Format date
+        const date = pubDate ? new Date(pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+        const card = document.createElement('a');
+        card.href = link;
+        card.target = '_blank';
+        card.rel = 'noopener';
+        card.className = 'insight-card';
+        card.innerHTML = `
+          <span class="insight-tag">Article</span>
+          <div class="insight-title">${title}</div>
+          <div class="insight-excerpt">${excerpt}</div>
+          <div class="insight-meta">${date}</div>
+          <span class="insight-read">Read Article →</span>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Fill remaining slots with placeholder if fewer than 3 posts
+      while (grid.children.length < 3) {
+        const ph = document.createElement('div');
+        ph.className = 'insight-card-placeholder';
+        ph.innerHTML = `<span class="insight-tag">Coming Soon</span><p>More writing on the way. Check back soon.</p>`;
+        grid.appendChild(ph);
+      }
+
+      loading.style.display = 'none';
+      grid.style.display = 'grid';
+
+    } catch (e) {
+      // Fallback: show static card linking to blog
+      loading.style.display = 'none';
+      grid.innerHTML = `
+        <a href="https://blog.unwrittenlogic.com/p/saas-ai-roi-2026" target="_blank" class="insight-card">
+          <span class="insight-tag">Industry Analysis</span>
+          <div class="insight-title">AI SaaS ROI in 2026: Why the spending is real but the returns aren't</div>
+          <div class="insight-excerpt">Most companies are spending more on AI than ever. Almost none can prove it is working. A data-backed look at the gap.</div>
+          <div class="insight-meta">Apr 20, 2026</div>
+          <span class="insight-read">Read Article →</span>
+        </a>
+        <a href="https://blog.unwrittenlogic.com/p/ai-needs-human-writers" target="_blank" class="insight-card">
+          <span class="insight-tag">Thought Leadership</span>
+          <div class="insight-title">Why AI Still Needs Human Writers to Make Sense of Itself</div>
+          <div class="insight-excerpt">AI is generating more content than ever, but the gap between what it produces and what actually resonates keeps growing.</div>
+          <div class="insight-meta">Apr 2026</div>
+          <span class="insight-read">Read Article →</span>
+        </a>
+        <div class="insight-card-placeholder">
+          <span class="insight-tag">Coming Soon</span>
+          <p>More writing on the way. Check back soon.</p>
+        </div>
+      `;
+      grid.style.display = 'grid';
+    }
+  }
+
+  loadBlogPosts();
+
+</script>
+</body>
+</html>
