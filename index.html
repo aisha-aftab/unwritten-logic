@@ -340,7 +340,7 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
@@ -673,10 +673,9 @@
   <a href="#" class="logo">Unwritten Logic</a>
   <nav>
     <a href="#about">About</a>
-    <a href="#work">Portfolio</a>
+    <a href="#work">Writing</a>
     <a href="#services">Services</a>
     <a href="#fiction">Fiction</a>
-    <a href="#blog">Blog</a>
     <a href="#contact" class="nav-cta">Let's Talk</a>
   </nav>
 </header>
@@ -796,34 +795,13 @@
 <div class="portfolio-wrap" id="work">
   <div class="portfolio-inner">
     <div class="section-header fade-up">
-      <span class="eyebrow" style="color:var(--pink);">Selected Work</span>
+      <span class="eyebrow" style="color:var(--pink);">Latest Writing</span>
       <h2 class="section-title">The work<br>speaks for <span class="accent">itself</span></h2>
     </div>
-    <div class="portfolio-grid fade-up">
-      <div class="work-card dark w-8">
-        <span class="work-type">Coming Soon</span>
-        <h4>More Work on the Way</h4>
-        <p>This space is reserved for something worth reading. Check back soon, or reach out to see samples directly.</p>
-        <span class="work-arrow">Get In Touch →</span>
-      </div>
-      <div class="work-card hot w-4">
-        <span class="work-type">Brand Copywriting</span>
-        <h4>Voice &amp; Tone Guide for a Luxury Brand</h4>
-        <p>Building a distinct brand personality from scratch.</p>
-        <span class="work-arrow">Read More →</span>
-      </div>
-      <div class="work-card w-6">
-        <span class="work-type">Long-Form Editorial</span>
-        <h4>Long-Form Editorial on Investor ROI</h4>
-        <p>Dissecting what actually drives returns, beyond the headline numbers.</p>
-        <span class="work-arrow">Read More →</span>
-      </div>
-      <div class="work-card w-6">
-        <span class="work-type">SEO Strategy</span>
-        <h4>Keyword Research &amp; Intent Mapping</h4>
-        <p>A strategic SEO content plan built around search intent, not just volume.</p>
-        <span class="work-arrow">Read More →</span>
-      </div>
+    <div id="blog-loading" style="text-align:center; padding:40px; font-family:'Syne Mono',monospace; font-size:11px; letter-spacing:0.15em; color:rgba(46,50,34,0.4); text-transform:uppercase;">Loading latest posts...</div>
+    <div class="portfolio-grid fade-up" id="blog-grid" style="display:none;"></div>
+    <div class="fade-up" style="text-align:center; margin-top:40px;">
+      <a href="https://blog.unwrittenlogic.com" target="_blank" class="btn-lime">Read All Articles</a>
     </div>
   </div>
 </div>
@@ -880,20 +858,6 @@
   </div>
 </div>
 
-
-<div class="insights-wrap" id="blog">
-  <div class="insights-inner">
-    <div class="section-header fade-up">
-      <span class="eyebrow">From the Blog</span>
-      <h2 class="section-title">Writing that<br>makes you <span class="accent">think</span></h2>
-    </div>
-    <div id="blog-loading">Loading latest posts...</div>
-    <div class="insights-grid fade-up" id="blog-grid" style="display:none;"></div>
-    <div class="insights-cta fade-up">
-      <a href="https://blog.unwrittenlogic.com" target="_blank" class="btn-lime">Read All Posts</a>
-    </div>
-  </div>
-</div>
 
 <div class="anais-wrap">
   <div class="anais-inner">
@@ -1002,40 +966,39 @@
 
       grid.innerHTML = '';
 
-      items.forEach(item => {
+      items.forEach((item, i) => {
         const title   = item.querySelector('title')?.textContent || 'Untitled';
         const link    = item.querySelector('link')?.textContent || '#';
         const pubDate = item.querySelector('pubDate')?.textContent || '';
         const desc    = item.querySelector('description')?.textContent || '';
 
-        // Strip HTML from description
         const tmp = document.createElement('div');
         tmp.innerHTML = desc;
-        const excerpt = (tmp.textContent || '').slice(0, 120).trim() + '...';
-
-        // Format date
+        const excerpt = (tmp.textContent || '').slice(0, 100).trim() + '...';
         const date = pubDate ? new Date(pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+        const colors = ['dark', 'hot', ''];
+        const colorClass = colors[i % 3];
 
         const card = document.createElement('a');
         card.href = link;
         card.target = '_blank';
         card.rel = 'noopener';
-        card.className = 'insight-card';
+        card.className = `work-card ${colorClass}`;
         card.innerHTML = `
-          <span class="insight-tag">Article</span>
-          <div class="insight-title">${title}</div>
-          <div class="insight-excerpt">${excerpt}</div>
-          <div class="insight-meta">${date}</div>
-          <span class="insight-read">Read Article →</span>
+          <span class="work-type">Article · ${date}</span>
+          <h4>${title}</h4>
+          <p>${excerpt}</p>
+          <span class="work-arrow">Read Article →</span>
         `;
         grid.appendChild(card);
       });
 
-      // Fill remaining slots with placeholder if fewer than 3 posts
+      // Fill to minimum 3 cards
       while (grid.children.length < 3) {
         const ph = document.createElement('div');
-        ph.className = 'insight-card-placeholder';
-        ph.innerHTML = `<span class="insight-tag">Coming Soon</span><p>More writing on the way. Check back soon.</p>`;
+        ph.className = 'work-card';
+        ph.innerHTML = `<span class="work-type">Coming Soon</span><h4>More Writing on the Way</h4><p>New articles published regularly. Check back soon.</p><span class="work-arrow" style="color:var(--pink);">Visit Blog →</span>`;
         grid.appendChild(ph);
       }
 
@@ -1043,26 +1006,25 @@
       grid.style.display = 'grid';
 
     } catch (e) {
-      // Fallback: show static card linking to blog
       loading.style.display = 'none';
       grid.innerHTML = `
-        <a href="https://blog.unwrittenlogic.com/p/saas-ai-roi-2026" target="_blank" class="insight-card">
-          <span class="insight-tag">Industry Analysis</span>
-          <div class="insight-title">AI SaaS ROI in 2026: Why the spending is real but the returns aren't</div>
-          <div class="insight-excerpt">Most companies are spending more on AI than ever. Almost none can prove it is working. A data-backed look at the gap.</div>
-          <div class="insight-meta">Apr 20, 2026</div>
-          <span class="insight-read">Read Article →</span>
+        <a href="https://blog.unwrittenlogic.com/p/saas-ai-roi-2026" target="_blank" class="work-card dark">
+          <span class="work-type">Industry Analysis · Apr 2026</span>
+          <h4>AI SaaS ROI in 2026: Why the spending is real but the returns aren't</h4>
+          <p>Most companies are spending more on AI than ever. Almost none can prove it is working.</p>
+          <span class="work-arrow">Read Article →</span>
         </a>
-        <a href="https://blog.unwrittenlogic.com/p/ai-needs-human-writers" target="_blank" class="insight-card">
-          <span class="insight-tag">Thought Leadership</span>
-          <div class="insight-title">Why AI Still Needs Human Writers to Make Sense of Itself</div>
-          <div class="insight-excerpt">AI is generating more content than ever, but the gap between what it produces and what actually resonates keeps growing.</div>
-          <div class="insight-meta">Apr 2026</div>
-          <span class="insight-read">Read Article →</span>
+        <a href="https://blog.unwrittenlogic.com/p/ai-needs-human-writers" target="_blank" class="work-card hot">
+          <span class="work-type">Thought Leadership · Apr 2026</span>
+          <h4>Why AI Still Needs Human Writers to Make Sense of Itself</h4>
+          <p>The gap between what AI produces and what actually resonates with readers keeps growing.</p>
+          <span class="work-arrow">Read Article →</span>
         </a>
-        <div class="insight-card-placeholder">
-          <span class="insight-tag">Coming Soon</span>
-          <p>More writing on the way. Check back soon.</p>
+        <div class="work-card">
+          <span class="work-type">Coming Soon</span>
+          <h4>More Writing on the Way</h4>
+          <p>New articles published regularly. Check back soon.</p>
+          <span class="work-arrow" style="color:var(--pink);">Visit Blog →</span>
         </div>
       `;
       grid.style.display = 'grid';
