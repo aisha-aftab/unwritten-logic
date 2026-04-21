@@ -952,7 +952,7 @@
   async function loadBlogPosts() {
     const grid = document.getElementById('blog-grid');
     const loading = document.getElementById('blog-loading');
-    const RSS_URL = 'https://blog.unwrittenlogic.com/feed';
+    const RSS_URL = 'https://blog.unwrittenlogic.com/feed.xml';
     const PROXY   = 'https://api.allorigins.win/get?url=' + encodeURIComponent(RSS_URL);
 
     try {
@@ -1008,16 +1008,16 @@
     } catch (e) {
       loading.style.display = 'none';
       grid.innerHTML = `
-        <a href="https://blog.unwrittenlogic.com/p/saas-ai-roi-2026" target="_blank" class="work-card dark">
-          <span class="work-type">Industry Analysis · Apr 2026</span>
-          <h4>AI SaaS ROI in 2026: Why the spending is real but the returns aren't</h4>
-          <p>Most companies are spending more on AI than ever. Almost none can prove it is working.</p>
+        <a href="https://blog.unwrittenlogic.com/p/cybersecurity-content-marketing-2026" target="_blank" class="work-card dark">
+          <span class="work-type">Industry Analysis · Apr 21, 2026</span>
+          <h4>The content gap in cybersecurity content marketing nobody talks about</h4>
+          <p>Most cybersecurity companies are not losing deals because of their product. They are losing them because of what they say before anyone sees the product.</p>
           <span class="work-arrow">Read Article →</span>
         </a>
-        <a href="https://blog.unwrittenlogic.com/p/ai-needs-human-writers" target="_blank" class="work-card hot">
-          <span class="work-type">Thought Leadership · Apr 2026</span>
-          <h4>Why AI Still Needs Human Writers to Make Sense of Itself</h4>
-          <p>The gap between what AI produces and what actually resonates with readers keeps growing.</p>
+        <a href="https://blog.unwrittenlogic.com/p/saas-ai-roi-2026" target="_blank" class="work-card hot">
+          <span class="work-type">Industry Analysis · Apr 20, 2026</span>
+          <h4>AI SaaS ROI in 2026: Why the spending is real but the returns aren't</h4>
+          <p>Most companies are spending more on AI than ever. Almost none can prove it is working.</p>
           <span class="work-arrow">Read Article →</span>
         </a>
         <div class="work-card">
