@@ -251,7 +251,14 @@
       background: #7E8C69;
       border-radius: 200px 200px 20px 20px;
       position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .about-shape img.avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
     .about-shape-text {
       font-family: 'Italiana', serif;
@@ -385,6 +392,16 @@
       color: rgba(46,50,34,0.06); top: -80px; left: 50%;
       transform: translateX(-50%); pointer-events: none; line-height: 1;
     }
+    .quote-avatar {
+      width: 90px; height: 90px; border-radius: 50%;
+      object-fit: cover; object-position: center 20%;
+      border: 3px solid var(--off-white);
+      margin: 0 auto 28px;
+      display: block;
+      position: relative; z-index: 2;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      background: var(--off-white);
+    }
     .quote-wrap blockquote {
       font-family: 'Italiana', serif; font-size: clamp(32px, 5vw, 64px);
       color: var(--black); max-width: 900px; margin: 0 auto 20px; line-height: 1.2; position: relative; z-index: 1;
@@ -392,6 +409,17 @@
     .quote-wrap cite {
       font-family: 'Syne Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
       text-transform: uppercase; color: rgba(46,50,34,0.6); font-style: normal;
+    }
+
+    /* CONTACT AVATAR */
+    .contact-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      object-fit: cover; object-position: center 25%;
+      border: 2px solid var(--pink);
+      margin-bottom: 20px;
+      display: block;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      background: var(--off-white);
     }
 
     /* FICTION */
@@ -730,7 +758,7 @@
   <div class="about-inner">
     <div class="about-left fade-up" style="position:relative;">
       <div class="about-shape">
-        <span class="about-shape-text">Write</span>
+        <img src="avatar-coffee.png" alt="Aisha Aftab - Writer" class="avatar-img">
         <div class="about-sticker">Born to<br>tell<br>stories ✦</div>
       </div>
       <span class="about-year">Est. 2018</span>
@@ -807,6 +835,7 @@
 </div>
 
 <div class="quote-wrap">
+  <img src="avatar-reading.png" alt="Aisha Aftab" class="quote-avatar">
   <blockquote>"A writer is a world trapped inside a person."</blockquote>
   <cite>  Unwritten Logic</cite>
 </div>
@@ -873,6 +902,7 @@
 <div class="contact-wrap" id="contact">
   <div class="contact-inner">
     <div class="contact-left fade-up">
+      <img src="avatar-writing.png" alt="Aisha Aftab" class="contact-avatar">
       <span class="eyebrow">Get In Touch</span>
       <h2 class="section-title">Drop me<br>a line.<br><span class="accent">I write back.</span></h2>
       <p>Whether you need sharp editorial copy, a content strategy that actually works, or just want to talk about stories I'd love to hear from you.</p>
