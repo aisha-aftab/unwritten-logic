@@ -939,18 +939,18 @@
       </div>
     </div>
     <div class="fade-up">
-      <form class="contact-form" onsubmit="handleSubmit(event)">
+      <form class="contact-form" onsubmit="handleContactSubmit(event)">
         <div>
           <label class="form-label">Your Name</label>
-          <input class="form-input" type="text" placeholder="What shall I call you?">
+          <input class="form-input" type="text" id="cf-name" placeholder="What shall I call you?" required>
         </div>
         <div>
           <label class="form-label">Email</label>
-          <input class="form-input" type="email" placeholder="Where can I reach you?">
+          <input class="form-input" type="email" id="cf-email" placeholder="Where can I reach you?" required>
         </div>
         <div>
           <label class="form-label">What's On Your Mind?</label>
-          <textarea class="form-textarea" placeholder="Tell me about your project, idea, or just say hello..."></textarea>
+          <textarea class="form-textarea" id="cf-message" placeholder="Tell me about your project, idea, or just say hello..." required></textarea>
         </div>
         <button type="submit" class="form-submit">Send Message ✦</button>
       </form>
@@ -1116,6 +1116,19 @@
   }
 
   loadBlogPosts();
+
+  // Handle contact form submission - opens email client with pre-filled message
+  function handleContactSubmit(event) {
+    event.preventDefault();
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+
+    const subject = encodeURIComponent(`New message from ${name} via Unwritten Logic`);
+    const body = encodeURIComponent(`Hi Aisha,\n\n${message}\n\n— ${name}\n${email}`);
+
+    window.location.href = `mailto:aishaaftab.16@gmail.com?subject=${subject}&body=${body}`;
+  }
 
 </script>
 </body>
