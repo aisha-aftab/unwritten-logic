@@ -983,13 +983,41 @@
     const grid = document.getElementById('blog-grid');
     const loading = document.getElementById('blog-loading');
     const RSS_URL = 'https://rss.beehiiv.com/feeds/A2xPUchHBw.xml';
-    const PROXY   = 'https://api.allorigins.win/get?url=' + encodeURIComponent(RSS_URL);
+
+    // Try multiple methods in case one fails
+    async function fetchRSS() {
+      const methods = [
+        // Method 1: Direct fetch (works if Beehiiv allows CORS)
+        async () => {
+          const r = await fetch(RSS_URL);
+          return await r.text();
+        },
+        // Method 2: corsproxy.io (more reliable than allorigins)
+        async () => {
+          const r = await fetch('https://corsproxy.io/?' + encodeURIComponent(RSS_URL));
+          return await r.text();
+        },
+        // Method 3: allorigins as fallback
+        async () => {
+          const r = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(RSS_URL));
+          const d = await r.json();
+          return d.contents;
+        }
+      ];
+
+      for (const method of methods) {
+        try {
+          const text = await method();
+          if (text && text.includes('<item')) return text;
+        } catch (e) { /* try next method */ }
+      }
+      throw new Error('All RSS methods failed');
+    }
 
     try {
-      const res  = await fetch(PROXY);
-      const data = await res.json();
+      const xmlText = await fetchRSS();
       const parser = new DOMParser();
-      const xml  = parser.parseFromString(data.contents, 'text/xml');
+      const xml  = parser.parseFromString(xmlText, 'text/xml');
       const items = Array.from(xml.querySelectorAll('item')).slice(0, 6);
 
       if (!items.length) throw new Error('No posts');
