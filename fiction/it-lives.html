@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>It Lives… | Unwritten Logic</title>
+  <meta name="description" content="A supernatural horror short story. A forensic pathologist opens a Jane Doe with no cause of death and no tongue, and something follows her home.">
+  <meta name="author" content="Aisha Aftab">
+  <link rel="canonical" href="https://unwrittenlogic.com/fiction/it-lives.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://unwrittenlogic.com/fiction/it-lives.html">
+  <meta property="og:title" content="It Lives… | Unwritten Logic">
+  <meta property="og:description" content="A supernatural horror short story by Aisha Aftab.">
+  <meta property="og:image" content="https://unwrittenlogic.com/favicon-512x512.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "It Lives…",
+    "genre": "Supernatural horror",
+    "inLanguage": "en",
+    "author": { "@type": "Person", "name": "Aisha Aftab" },
+    "publisher": { "@type": "Organization", "name": "Unwritten Logic" },
+    "url": "https://unwrittenlogic.com/fiction/it-lives.html",
+    "datePublished": "2026-10-31"
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&family=Italiana&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #1a1a1a; --lime: #9CAD8C; --pink: #F6B0BB;
+      --electric: #7E8C69; --off-white: #ECE0DA; --ink: #2E3222;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--off-white); color: var(--black); overflow-x: hidden; }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 50px;
+      background: rgba(236,224,218,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(156,173,140,0.25);
+    }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--lime); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; }
+    nav { display: flex; align-items: center; gap: 32px; }
+    nav a { font-family: 'Syne Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; color: rgba(46,50,34,0.6); transition: color 0.2s; }
+    nav a:hover { color: var(--lime); }
+    .nav-cta { padding: 9px 22px; background: var(--lime); color: var(--black) !important; border-radius: 4px; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--pink) !important; }
+
+    .story-hero { background: var(--electric); padding: 170px 50px 90px; position: relative; overflow: hidden; }
+    .story-hero::before {
+      content: ''; position: absolute; width: 520px; height: 520px; border-radius: 50%;
+      background: var(--pink); filter: blur(90px); opacity: 0.3; top: -140px; right: -120px;
+    }
+    .story-hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; }
+    .eyebrow { font-family: 'Syne Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--off-white); display: block; margin-bottom: 22px; opacity: 0.85; }
+    .story-title { font-family: 'Italiana', serif; font-size: clamp(56px, 10vw, 120px); line-height: 0.95; color: var(--off-white); margin-bottom: 30px; }
+    .story-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; font-family: 'Syne Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); }
+    .story-note { margin-top: 22px; font-size: 13px; color: rgba(46,50,34,0.75); }
+
+    .story-body { max-width: 680px; margin: 0 auto; padding: 90px 24px 60px; }
+    .story-body p { font-size: 18px; line-height: 1.9; color: #3a3330; margin-bottom: 22px; }
+    .story-body em { font-style: italic; color: var(--ink); }
+    .story-body .verse { padding-left: 22px; border-left: 2px solid var(--pink); font-size: 17px; line-height: 1.8; }
+    .story-body hr { border: none; text-align: center; margin: 54px 0; }
+    .story-body hr::before { content: '✦'; color: var(--pink); font-size: 16px; }
+
+    .story-end { max-width: 680px; margin: 0 auto; padding: 20px 24px 100px; text-align: center; }
+    .story-end p { font-family: 'Italiana', serif; font-size: 30px; color: var(--ink); margin-bottom: 28px; }
+    .btn-lime { padding: 14px 34px; background: var(--lime); color: var(--ink); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 4px; display: inline-block; transition: background 0.2s, transform 0.2s; }
+    .btn-lime:hover { background: var(--ink); color: var(--off-white); transform: rotate(1deg) translateY(-2px); }
+
+    footer { background: var(--electric); padding: 50px; border-top: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-family: 'Syne Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(46,50,34,0.5); text-decoration: none; }
+    .footer-links a:hover { color: white; }
+    footer p { font-family: 'Syne Mono', monospace; font-size: 10px; color: rgba(236,224,218,0.7); letter-spacing: 0.1em; }
+
+    @media (max-width: 760px) {
+      header { padding: 18px 24px; }
+      nav { display: none; }
+      .story-hero { padding: 130px 24px 60px; }
+      .story-body p { font-size: 17px; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Unwritten Logic</a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/#work">Writing</a>
+    <a href="/#services">Services</a>
+    <a href="/#fiction">Fiction</a>
+    <a href="/#contact" class="nav-cta">Let's Talk</a>
+  </nav>
+</header>
+
+<section class="story-hero">
+  <div class="story-hero-inner">
+    <span class="eyebrow">✦ Short Fiction · Supernatural Horror</span>
+    <h1 class="story-title">It Lives…</h1>
+    <div class="story-meta">
+      <span>By Aisha Aftab</span>
+      <span>About 20 min read</span>
+    </div>
+    <p class="story-note">Content note: death, harm to a child and suicide.</p>
+  </div>
+</section>
+
+<article class="story-body">
+
+<p>Bella was new in the city. She worked as a forensic pathologist in a medical examiner’s office. She had worked so hard to get there and she was proud of her work. Her mother wasn’t exactly happy about her career choice and even less happy when Bella moved miles away to pursue her degree.</p>
+
+<p>When she landed the job, she was over the moon but her mother was less than thrilled.</p>
+
+<p><em>The dead want to be left alone, Isabelle,</em> her mother always said.</p>
+
+<p>But the dead didn’t scare Bella. If anything, she found them interesting. The dead were honest; they kept no secrets from her. Most people flinched when she told them she performed autopsies.</p>
+
+<p>But Bella didn’t care — she liked her job and she was good at it. Unlike other people, she didn’t dread going to work every morning. Not until a week ago.</p>
+
+<p>Not until Astrid.</p>
+
+<hr>
+
+<p>It was just another Wednesday; a body was found. A woman in her late twenties, found in a downtown alley. No visible trauma. No ID.</p>
+
+<p>Bella snapped on her gloves and got to work.</p>
+
+<p>The external examination gave her nothing. No bruising, no ligature marks, no petechial hemorrhaging in the eyes. The skin was unmarked — not just unmarked, but perfect porcelain. No old scars. No vaccination marks. It was as if she was brand new.</p>
+
+<p>The only odd thing was her nails; they were decaying as if she had been dead for months.</p>
+
+<p>Intrigued, Bella opened her up.</p>
+
+<p>The organs were immaculate. Heart, lungs, liver — everything was in perfect condition. Bella weighed each one and wrote the numbers down.</p>
+
+<p>She saved the mouth for last.</p>
+
+<p>As soon as she opened it, Bella gasped. There was no tongue. But it didn’t look like it was removed post-mortem — the tissue at the base was healed. Bella recovered from her momentary shock and tried to wrap her head around the fact that someone cut off this poor girl’s tongue while she was alive, taking away her ability to speak on purpose.</p>
+
+<p>She stood there longer than she needed to and eventually left the cause of death blank.</p>
+
+<hr>
+
+<p>She didn’t think about Astrid when she went home that evening. That was what she told herself later — that the first night was like any other. She made herself a sandwich and watched her favorite show on Netflix.</p>
+
+<p>She found herself in a garden of roses before even realizing she was asleep.</p>
+
+<p>A little girl was crouched in front of a sprawled golden retriever. Silver-blond hair fell across her face and she was humming to herself.</p>
+
+<p class="verse"><em>Bium bium bambaló<br>
+Bambaló and dilidillidó<br>
+My little friend and I lull to rest<br>
+But outside, a face looms at the window<br>
+When the mighty mountains<br>
+Fill your chest with burning desire,<br>
+I will play the langspil<br>
+And soothe your mind.</em></p>
+
+<p>Bella stood there and watched her.</p>
+
+<p>She didn’t know how she knew the girl’s name. She hadn’t been told, hadn’t heard anyone call out to her. But she knew the girl’s name:</p>
+
+<p><em>Astrid.</em></p>
+
+<p>The girl looked up, rosy cheeks, curious eyes. She squinted at Bella — frowned — then looked back down at her dog.</p>
+
+<p><em>Come on, Trevor, let’s go! Mommy’s waiting.</em></p>
+
+<p>Bella woke with a jolt and for a moment couldn’t place where she was.</p>
+
+<hr>
+
+<p>The next night, Bella fell asleep reading a book in her bed. One moment she was reading about the murderous wife and her cheating husband and the next she was standing in a sunlit kitchen.</p>
+
+<p>Astrid was on the floor with Trevor, dragging a chewed tennis ball across the tiles, the dog skidding after it — tail whipping happily. At the stove, a woman with the same silver-blond hair as Astrid stood stirring a pot, her back to the room. She was humming.</p>
+
+<p><em>Bium bium bambaló.</em></p>
+
+<p>The same haunting tune. Lower, slower, stripped of the words. Astrid looked up from the dog and for a moment her eyes went to the doorway where Bella stood. Then back to Trevor.</p>
+
+<p><em>Mamma,</em> she said. <em>Hver er Fjalla-Eyvindur?</em> (Who is Fjalla-Eyvindur?)</p>
+
+<p>The woman at the stove didn’t turn around.</p>
+
+<p><em>Bara saga,</em> she said. <em>Farðu að þvo þér um hendurnar.</em> (Just a story. Go and wash your hands.)</p>
+
+<p>Bella woke to the television still running, sweat beading her forehead. She lay there trying to remember the dream, but she couldn't remember anything.</p>
+
+<p>Exasperated, she gave up and went back to sleep.</p>
+
+<hr>
+
+<p>In the morning, Bella stood in the shower and hummed.</p>
+
+<p>A slow tune filling her with an ominous feeling. It wasn’t until she wrapped herself in a towel that she caught herself and stopped, her hand going still.</p>
+
+<p>She didn’t know that melody. She was certain she didn’t know it.</p>
+
+<p>She went to work. She signed off on two reports, ate lunch at her desk, argued briefly with a colleague about paperwork that wasn’t hers to file — just a regular day.</p>
+
+<p>But that tune kept coming back to her — between one thought and the next, in the elevator, under her breath while she waited for the espresso machine to brew her coffee.</p>
+
+<p>She couldn’t place it. Couldn’t trace it back to a film or a playlist or a childhood memory. And as she was washing her hands after performing an autopsy, it clicked.</p>
+
+<p>The dream with the little girl in a rose garden.</p>
+
+<p>She dried her hands, sat down at her desk and opened her laptop. The only words she could remember were:</p>
+
+<p><em>Bium bium bambaló,</em> she typed.</p>
+
+<p>The lights above her desk flickered.</p>
+
+<p>Bella glanced up, then back at the screen.</p>
+
+<p>The results loaded.</p>
+
+<p>A traditional Icelandic lullaby. Originally written as part of a play — <em>Fjalla-Eyvindur</em> — in which a mother sings her child to sleep before drowning her, freeing herself to flee with her outlaw husband. The Bium Bium of the song was not words of comfort; Bella found it unsettling that something as sinister as this could be a children’s lullaby.</p>
+
+<p>Her mind drifted to the kitchen in her dream. The woman at the stove, her back to the room, humming this same tune to her daughter.</p>
+
+<p>She thought about the small girl asking who Fjalla-Eyvindur was.</p>
+
+<p><em>Bara saga,</em> the woman had said. <em>Just a story.</em></p>
+
+<p>Bella closed the laptop.</p>
+
+<p>She stopped at the coffee shop on the way home, took her usual corner seat, scrolled through her phone without reading anything. Went home, made pasta she didn’t particularly taste and fell asleep halfway through Love Island, the contestants arguing about something that would be resolved by the next episode.</p>
+
+<p>It was, by every measure, an entirely uneventful day.</p>
+
+<p>Except for the humming.</p>
+
+<hr>
+
+<p>The fourth night, Bella didn’t dream at all.</p>
+
+<p>She woke at seven, went through her usual morning routine and left for work. The sky was grey and gloomy, threatening to spill any moment.</p>
+
+<p>She cleared two backlogged reports she’d been putting off. She ate lunch with a colleague for the first time in weeks and laughed at something that wasn’t particularly funny and didn’t think once about rose gardens or women with silver-blond hair or Icelandic folklore.</p>
+
+<p>On her way home, she picked up dry cleaning she’d forgotten about and texted her mother.</p>
+
+<p>By the time she got home she’d made a decision without even articulating it — that it had been stress, new place, new city, strange case.</p>
+
+<p>She attributed her dreams to lack of sleep and stress. That night she slept eight hours without interruption and woke feeling like herself.</p>
+
+<p>She was convinced it was just in her mind and it was all over.</p>
+
+<hr>
+
+<p>The following morning, clouds finally gave in and it rained. Bella decided to drive to work.</p>
+
+<p>She was in the parking garage beneath her building, keys in hand, when she saw her.</p>
+
+<p>A woman at the far end of the garage, standing with her back to Bella, half swallowed by darkness. Bare feet on cold concrete. A thin cotton dress - wrong for the weather, dark at the hem.</p>
+
+<p>Bella stopped walking.</p>
+
+<p>Something about the way she stood was wrong.</p>
+
+<p><em>Hey—</em></p>
+
+<p>The word left her mouth before she’d decided to speak.</p>
+
+<p>The woman didn’t turn around. Didn’t flinch. The shadow at the far end of the garage seemed to deepen around her.</p>
+
+<p>Bella took one step forward.</p>
+
+<p>And the woman was gone.</p>
+
+<p>Bella stood there. She didn’t know for how long — it could be seconds, minutes, days — she didn’t know. She was too scared to move.</p>
+
+<p>But, she had been so certain it was all in her mind, or was it?</p>
+
+<hr>
+
+<p>She told herself it was a trick of light and she had been thinking about that dead girl a lot. She knew people see things under pressure; she’d read the studies. She believed in those studies backed by data and scientific arguments.</p>
+
+<p>She went to work. She got through the morning and reassured herself that she was fine.</p>
+
+<p>The bathroom on the second floor of the morgue had four stalls, a long mirror above the sinks, and a window that didn’t open properly and let in a draft that everyone complained about and no one fixed. Bella had used it every day for months without thinking about it.</p>
+
+<p>She was washing her hands when she heard it.</p>
+
+<p>From the last stall. The one that was always empty because the lock was broken and the door swung open unless you held it shut with your foot.</p>
+
+<p><em>Bium bium bambaló.</em></p>
+
+<p>Hummed low. A child’s register.</p>
+
+<p>Bella’s hands went still under the running tap.</p>
+
+<p>She looked at the mirror. The stall behind her was closed.</p>
+
+<p>She turned off the tap. Dried her hands. Stood with her back against the sink and looked at the closed stall door and told herself a series of reasonable things in rapid succession — a colleague, earphones, sound carrying strangely from the corridor outside. The door had a broken lock. It was closed.</p>
+
+<p>The lock that never held was latched shut from the inside.</p>
+
+<p>Bella stepped back. The fluorescent light above the last stall flickered.</p>
+
+<p>She left without finishing drying her hands.</p>
+
+<p>She took the stairs instead of the elevator, walked past three colleagues without responding to any of them and sat at her desk and stared at Astrid’s file for a long time without opening it.</p>
+
+<p>That evening, she asked her neighbor to park her car in the garage.</p>
+
+<hr>
+
+<p>Bella was in a car. It was a beat-up Ford Taurus. The radio was playing.</p>
+
+<p>The road seemed to go nowhere in particular. She took in her surroundings.</p>
+
+<p>Astrid was sleeping in the back seat, cheek pressed against the window, a silver-blond curtain of hair falling across her face.</p>
+
+<p>Bella was in the passenger seat.</p>
+
+<p>The woman driving had the same silver-blond hair as Astrid, both hands on the wheel, eyes fixed ahead — mumbling something under her breath.</p>
+
+<p>Then she turned her head and looked directly at Bella.</p>
+
+<p><em>Get out.</em></p>
+
+<p>Bella gasped.</p>
+
+<p><em>Get out.</em></p>
+
+<p>The radio cut dead.</p>
+
+<p>The woman screamed.</p>
+
+<p><em>GET OUT GET OUT GET OUT—</em></p>
+
+<p>Bella woke on the bathroom floor.</p>
+
+<p>She didn’t remember how she got there. She didn’t remember leaving the bed.</p>
+
+<p>She was sitting with her back against the bathtub, knees drawn to her chest, the tiles cold against her bare legs.</p>
+
+<p>She sat there until her breathing evened out. Until the woman’s face stopped replaying behind her eyes.</p>
+
+<p>Then she picked up her phone and called her mother.</p>
+
+<hr>
+
+<p>Her mother picked up on the second ring.</p>
+
+<p>This was not unusual. Sylvie had always been a light sleeper and she always seemed to know when one of her children was calling from a bad place.</p>
+
+<p>She didn’t say hello. She said:</p>
+
+<p><em>Bella. What happened.</em></p>
+
+<p>Bella opened her mouth and tried to form words, but her throat felt like sandpaper.</p>
+
+<p><em>Bella. Ma puce. What’s wrong?</em></p>
+
+<p>And then, without even realizing it, Bella told her mother everything. She told her about the body coming in and how the dreams started. The incident in the garage, the bathroom stall and how she woke up on her bathroom floor.</p>
+
+<p><em>How long,</em> her mother said.</p>
+
+<p><em>Just over a week.</em></p>
+
+<p><em>Mama,</em> Bella said. <em>What do I do?</em></p>
+
+<p><em>Nothing yet. I need to find out what this is first. There are things I need to feel for that I can’t do from here. I’m coming.</em></p>
+
+<p><em>You don’t have to—</em></p>
+
+<p><em>Bella.</em></p>
+
+<p>She stopped.</p>
+
+<p><em>I have never needed eyes to know when something is wrong with one of my children. I am coming.</em></p>
+
+<p>She hung up before Bella could argue.</p>
+
+<p>Bella sat on the edge of the bed.</p>
+
+<p>She didn’t dare go back to sleep.</p>
+
+<hr>
+
+<p>Sylvie arrived the next day with a single bag and no explanation of how she’d managed the journey alone. She didn’t ask for help at the door. She stood in the hallway for a moment, head tilted slightly, listening for something beyond the range of ordinary hearing.</p>
+
+<p><em>Where do you sleep?</em></p>
+
+<p>Bella showed her the bedroom. Sylvie walked in, feeling her way around with her white cane, running her other hand along the wall. She turned to face her daughter.</p>
+
+<p><em>Go, make tea,</em> she said. <em>And leave me.</em></p>
+
+<p>Bella went to the kitchen and put the kettle on. She stood there for a long time listening to nothing. No sound came from the bedroom.</p>
+
+<p>Bella jumped at the loud whistle of the kettle as it came to a boil.</p>
+
+<p>She was on her second cup when her mother appeared in the kitchen doorway. She looked older. Not tired — older, as if something had already cost her something she hadn’t budgeted for.</p>
+
+<p>Sylvie sat at the kitchen table. For a long time, neither of them spoke.</p>
+
+<p><em>It isn’t alone,</em> she said finally.</p>
+
+<p><em>The girl you’re dreaming of — how did she die?</em></p>
+
+<p><em>I couldn’t figure it out. Her body showed no signs, no cause — just that she had no tongue,</em> Bella said.</p>
+
+<p><em>She is not alone, chérie,</em> said Sylvie. <em>Something is attached to her. Something that does not belong here, in the world of the living. What do you know about her mother?</em></p>
+
+<p><em>Just from the dreams, Mama. The report that came with her didn’t say anything,</em> said Bella.</p>
+
+<hr>
+
+<p>She went back to the morgue the next morning while Sylvie slept. She pulled Astrid’s file and went through it page by page, looking for anything she might have missed the first time. She found nothing.</p>
+
+<p>Her supervisor stopped by her desk mid-afternoon with a folder.</p>
+
+<p><em>The Jane Doe from last week,</em> he said, setting it down. <em>Police called. Someone filed a missing persons report — her sister. They’ve got a name.</em></p>
+
+<p>Bella opened the folder.</p>
+
+<p>Astrid Karlsdóttir. Twenty-three years old. Last seen three weeks ago by a neighbor. Next of kin listed as one sibling — name and whereabouts withheld at the filer’s request.</p>
+
+<p>No mother listed.</p>
+
+<p>Bella stared at the name. Then she picked up her phone and called the precinct contact on the folder. She asked, carefully, about the family.</p>
+
+<p>The officer on the other end was helpful up to a point — yes, the mother was alive, no, she wasn’t reachable in the conventional sense.</p>
+
+<p><em>She’s at Harrowfield,</em> he said. <em>Has been for three years.</em></p>
+
+<hr>
+
+<p>Bella looked up Harrowfield. A psychiatric facility twenty minutes outside the city. She looked up Sigrid Karlsdóttir. It took her the better part of an afternoon and two phone calls she wasn’t strictly authorized to make. But she eventually found out that Mrs Karlsdóttir was originally from Iceland. She had been admitted following an incident involving her minor daughter. Found not guilty by reason of insanity. No visitors on record. No next of kin listed.</p>
+
+<p>One daughter deceased. One daughter — whereabouts unknown.</p>
+
+<p>Bella went home and told her mother.</p>
+
+<p>Sylvie listened without interrupting. When Bella finished, she was quiet for a moment, her sightless eyes fixed on something past Bella’s shoulder.</p>
+
+<p><em>We need to go,</em> Sylvie said. <em>She has been waiting for someone to come.</em></p>
+
+<hr>
+
+<p>Harrowfield sat on the outskirts of the city. The building was older than Bella had expected — grey chipping stone, high windows, the kind of architecture designed in an era when institutions were built to keep things in rather than help people out.</p>
+
+<p>They were shown to a visiting room that smelled strongly of floor cleaner and medicines. A nurse warned them of Sigrid’s condition and asked them not to upset her.</p>
+
+<p>Sigrid was brought in a few minutes later.</p>
+
+<p>She was smaller than Bella had imagined. Nothing like the woman in her dreams.</p>
+
+<p>Her hair, which was once a beautiful shade of silver-blond, was now completely white. Pulled back from a face that had once been striking and was now just hollowed out. She was frail and looked older than her age.</p>
+
+<p>Her eyes went to Sylvie and stayed there.</p>
+
+<p><em>You can’t see,</em> she said. Her accent was faint but you could detect a hint of it.</p>
+
+<p><em>No,</em> Sylvie said.</p>
+
+<p>She then looked at Bella.</p>
+
+<p><em>You opened her up,</em> she said.</p>
+
+<p>Bella felt the hair rise on her arms.</p>
+
+<p><em>I’m a forensic pathologist. She came in as a Jane Doe. I performed the—</em></p>
+
+<p><em>I know what you did. I know because it found you. It always finds the one who opens the door.</em> She paused. <em>How long has she been visiting you?</em></p>
+
+<p><em>Just over two weeks.</em></p>
+
+<p>Sigrid nodded slowly, as though this confirmed something she’d already known.</p>
+
+<p><em>My daughter,</em> she said, <em>was not a bad girl. I want you to understand that. She was seven years old and she wanted to know about the old stories. I told her because that is what mothers do. You give your children where they come from. You give them the songs and the stories. I could have never imagined she would— she didn’t mean to.</em></p>
+
+<p>Something crossed Sigrid’s face. Not fear — a mix of dread and grief so old it had gone flat.</p>
+
+<p><em>My Astrid was very bright,</em> Sigrid said. <em>She wanted to know everything about our Icelandic culture — the stories, the myths. It made me so proud. When she was a teenager, she found a group online. Children, mostly. Fifteen, sixteen years old. They came from different places — Iceland, Morocco, Pakistan, Mexico — all of them curious about where they came from. Their heritage. Their old stories.</em></p>
+
+<p><em>It seemed harmless. It seemed like exactly the kind of thing a curious young girl should be doing. And then they started exchanging things. Scanned pages from old texts, family documents, heirlooms their grandparents had kept.</em></p>
+
+<p><em>One boy from Morocco sent photographs of a manuscript his family had owned for generations. A girl from Lahore sent pages from a book her grandmother had kept hidden at the back of a cupboard for forty years.</em> Sigrid’s voice dropped. <em>Old things. Things that had been put away deliberately, by people who understood why these things should remain hidden. And these children were passing them around like trading cards, translating badly, trying incantations they didn’t understand because they were just kids.</em></p>
+
+<p><em>Astrid was the brightest of all of them,</em> she said. <em>That was the problem.</em></p>
+
+<p><em>She became the one they all deferred to. She had always been like that — the one the others followed. I used to think it was a gift.</em> Sigrid stopped for a moment to catch her breath. <em>She taught herself to read the old Icelandic texts. Not the versions they teach in schools — the older ones, the ones that predate the stories most people know. She wrote to the archives. She ordered books from dealers in Reykjavik and Copenhagen that I didn’t know about until I found them under her bed.</em></p>
+
+<p><em>What kind of books?</em> Bella asked.</p>
+
+<p>Sigrid didn’t answer right away.</p>
+
+<p><em>The kind that wise people treat seriously and leave alone,</em> she said. <em>Astrid was seventeen. She didn’t know yet that there are things you don’t approach without preparation. Her curiosity got the better of her.</em></p>
+
+<p>Bella held her breath.</p>
+
+<p><em>Astrid found a ritual,</em> Sigrid said. <em>Assembled from pieces — a fragment from the Moroccan manuscript and something she found in one of her books. She thought it was just a game. She performed it alone and didn’t tell the others. She wanted to be the one who made contact first.</em></p>
+
+<p><em>Fjalla-Eyvindur,</em> Bella said.</p>
+
+<p><em>That is what she believed she was calling,</em> Sigrid said. <em>She had grown up with that story. She thought she knew it. She thought it was hers. But Fjalla-Eyvindur is just a story. What heard her calling that night was something far more sinister. Something that had been waiting a very long time for someone young and foolish enough to open a door without knowing what was on the other side.</em></p>
+
+<p>All of a sudden, the room went cold. All three of them felt it. Bella felt a shiver run up her spine.</p>
+
+<p><em>And it came,</em> Sigrid said. <em>And Astrid thought it was her friend.</em></p>
+
+<hr>
+
+<p><em>At first it was small things,</em> Sigrid said. <em>She stopped sleeping. She lost weight. She became distant. Not unhappy exactly — more like she was paying attention to something the rest of us couldn’t see. I took her to a doctor. The doctor said adolescent depression. I believed him because I wanted to believe him.</em></p>
+
+<p><em>The group noticed too,</em> she continued. <em>They started messaging me — some of them, the ones who were frightened — saying Astrid had changed. That she had stopped sharing what she was finding. That she had become secretive. The Moroccan boy stopped responding to everyone entirely. His mother contacted me six months later.</em> Sigrid sighed. <em>He had jumped from his school building.</em></p>
+
+<p>Bella and Sylvie said nothing.</p>
+
+<p><em>I didn’t connect it then,</em> Sigrid said. <em>I should have but I didn’t.</em></p>
+
+<p>She shifted in her chair.</p>
+
+<p><em>Astrid started spending every night in the basement. I could hear her down there — the cadence of it, that rhythm, always the same. I told myself she was studying. I made a lot of excuses for her behavior.</em></p>
+
+<p><em>And then Marcus.</em></p>
+
+<p>She stopped. Her eyes lost focus, as if she were lost in a distant memory.</p>
+
+<p><em>My precious boy. He was only fourteen.</em> She stopped. <em>He walked home from school — the same road every day. The truck driver said someone pushed him from behind. There were no witnesses. The police investigated and found nothing and eventually closed the file.</em></p>
+
+<p>Her voice went flat.</p>
+
+<p><em>I knew. I knew and I sat across from my daughter at dinner that same evening. I watched her eat as if nothing had happened.</em></p>
+
+<p><em>How long after that did your husband—</em> Bella began.</p>
+
+<p><em>Eight months,</em> Sigrid said. <em>Erik started having episodes. Seeing things. Hearing things. He was a rational man — an engineer, very grounded — and it destroyed him. He loved Astrid and he refused to believe anything I said.</em></p>
+
+<p><em>He paid the price.</em></p>
+
+<p><em>I found him in the basement. Neck clearly severed.</em></p>
+
+<p><em>Astrid didn’t react to her father’s death. By then, she wasn’t pretending anymore,</em> Sigrid said. <em>She didn’t bother. She looked at me with an expression that was almost kind — the way you look at something small that doesn’t understand what’s happening.</em></p>
+
+<p><em>She had her father’s eyes. And I couldn’t bear to look at her anymore without feeling the weight of everything I had lost.</em></p>
+
+<p><em>And Lena,</em> Sylvie said. Gently.</p>
+
+<p>Sigrid closed her eyes.</p>
+
+<p><em>Lena was nine,</em> she said. <em>She was in the bath. I was in the kitchen when I heard Lena screaming. I ran.</em></p>
+
+<p>She opened her eyes.</p>
+
+<p><em>Astrid was holding Lena underwater and she wasn’t struggling anymore.</em></p>
+
+<p>Bella drew a sharp breath.</p>
+
+<p><em>I managed to pull Lena out. She was still breathing. Astrid stood there staring at us — she had her father’s eyes. Did I tell you that? Out of all three of my children, only Astrid inherited her father’s pale blue eyes. I always adored those eyes. They were my favorite feature of my daughter’s face.</em></p>
+
+<p><em>But that night, when I looked into them—</em> Sigrid stopped.</p>
+
+<p><em>I didn’t recognize them. Whatever stared back at me was not my daughter. She was gone and I just didn’t want to believe it.</em></p>
+
+<p>The room went dead silent.</p>
+
+<p>Sigrid sat back.</p>
+
+<p><em>That night I made a decision,</em> she said. <em>I went down to the basement. Astrid was reciting — the same words, the same rhythm, over and over. I had heard it for two years. And I thought if I could stop her from saying those words, I would get my daughter back.</em></p>
+
+<p>She stopped talking.</p>
+
+<p><em>I was her mother,</em> she said. <em>And I needed to believe I could do something. So I did the only thing I could think of to stop the words.</em></p>
+
+<p>Silence.</p>
+
+<p><em>I know now it changed nothing,</em> she said. <em>The words were never the vessel. That thing possessed my daughter and no act of mine was ever going to cut it out.</em></p>
+
+<p>She looked at Bella.</p>
+
+<p><em>But I didn’t know it then. And by the time I understood, it was too late.</em></p>
+
+<hr>
+
+<p><em>The first months here were almost peaceful,</em> Sigrid said. <em>I know how that sounds. But after five years of living in that house, the silence felt like a blessing. I started to believe it was over. That Lena was safe.</em></p>
+
+<p>She paused.</p>
+
+<p><em>And then the dreams started.</em></p>
+
+<p><em>Night after night — the same dream. Astrid drowning Lena. It would make me watch. I couldn’t move, couldn’t speak. I tried to reason with myself — they were just dreams. The doctors told me it was PTSD.</em></p>
+
+<p><em>But you didn’t believe that,</em> Sylvie said.</p>
+
+<p><em>No,</em> said Sigrid.</p>
+
+<p><em>One night I woke from a dream and she was there.</em> Sigrid’s voice dropped. <em>Standing over me. Her face inches from mine, just staring. I blinked and she was gone.</em></p>
+
+<p><em>After that I couldn’t separate anything. I would dream of her hurting Lena and wake up and see her in the corner and not know if I was still dreaming or if I was awake. The shadows in this room — I still don’t know what to trust.</em></p>
+
+<p>She steadied herself and leaned back in her chair.</p>
+
+<p><em>That was when I called Lena. I told her to hide. To change her name. To just go and not tell anyone who she was. I couldn’t explain why — I just told her to trust me.</em></p>
+
+<p><em>And she tried to come to me. My Lena. She called the facility, she wrote, she came and asked to see me and I—</em></p>
+
+<p>Her voice caught.</p>
+
+<p><em>I told the nurses to send her away. To tell her not to come back.</em></p>
+
+<p><em>I turned her away. I had to. I had to keep her away from whatever was following me into this building. I had to—</em></p>
+
+<p>She stopped.</p>
+
+<p>Her eyes dropped to Bella’s hands on the table.</p>
+
+<p>The nails.</p>
+
+<p>Black to the root and peeling away from the flesh, rotting.</p>
+
+<p>Something cracked open in Sigrid’s face — three years of barely held composure giving way all at once. She lurched forward, hands reaching for Bella’s throat, a sound coming out of her that wasn’t language anymore.</p>
+
+<p><em>GET OUT! GET OUT! YOU BROUGHT IT HERE! GET OUT GET OUT GET OUT—</em></p>
+
+<p>The nurse was there in seconds. Then two others. Bella and Sylvie were ushered out while Sigrid’s voice followed them down the corridor. They sat in the car. Bella stared at her hands. She pressed her thumb hard into one of the nails. Nothing, no pain, no pressure, she couldn't feel anything, as if these weren’t her hands at all.</p>
+
+<p>She tucked both hands under her thighs and kept them there.</p>
+
+<p>Bella had seen nails like these before. She had written them into Astrid’s file as an afterthought.</p>
+
+<p><em>Mama,</em> she said.</p>
+
+<p><em>I know, chérie,</em> said Sylvie.</p>
+
+<p><em>What happened…I don’t understand… my nails... I don’t remember—</em></p>
+
+<p><em>I know,</em> said Sylvie.</p>
+
+<p>Outside, dark clouds were looming, threatening to pour any second. Bella started the engine.</p>
+
+<p><em>What do we do,</em> she said.</p>
+
+<p>Sylvie’s long white cane rested across her knees, her sightless eyes forward.</p>
+
+<p><em>We finish it,</em> she said. <em>Tonight.</em></p>
+
+<hr>
+
+<p>Neither of them spoke on the drive back home. Bella had learnt long ago that her mother had her own pace and liked to curate her thoughts in silence. They reached her apartment building as the sun was setting.</p>
+
+<p><em>Sit,</em> her mother said.</p>
+
+<p>Sylvie placed both her hands on Bella’s head and began to recite.</p>
+
+<p>Bella didn’t understand the words. Sylvie’s voice was low and steady.</p>
+
+<p>She found comfort in hearing her mother’s voice and closed her eyes.</p>
+
+<p>And then Bella felt her surroundings change as dread filled her. She smelled it first — something rotten, like meat left out on a warm summer day. She opened her eyes and found herself back in the morgue — on the very table where she performed autopsies. The fluorescent lights above her hummed.</p>
+
+<p>She tried to get up, but she couldn’t move. Her arms were at her sides, pinned, the steel of the table cold through her clothes. She tried to speak, but no sound came out of her mouth. She realized she had no tongue. She panicked and saw something move from the corner of her eyes.</p>
+
+<p>Astrid bent over her with an ugly smile splitting her face almost in half. Her eyes black. Her nails — rotting — dragged lightly along the edge of the table as she circled Bella.</p>
+
+<p>Bella screamed at the top of her lungs but no sound would come out.</p>
+
+<p>And then, without any warning, Astrid cut her cheek with a scalpel — the same one Bella had used to cut Astrid. The pain was sharp. Bella felt her eyes sting. Warm blood ran down the side of her face and dripped onto the steel table beneath her.</p>
+
+<p>And then Astrid started laughing.</p>
+
+<p><em>It’s my turn to cut you open… Bellaaaa.</em></p>
+
+<p>The laugh bounced off the walls, like multiple voices speaking at once. The fluorescent lights above flickered violently. The temperature dropped another degree and then another. Bella could see her own breath now, small desperate clouds of it, the only evidence that she was still breathing at all.</p>
+
+<p>And then she heard it. Her mother’s voice.</p>
+
+<p><em>Bella. Bella. Come back to me, ma puce.</em></p>
+
+<p><em>Mama. Mama, please help me. I can’t move,</em> said Bella.</p>
+
+<p><em>I’m right here, puce. Listen to me. Follow my voice,</em> said Sylvie.</p>
+
+<p>She felt her before she saw her. Arriving at her side like a wall being built between Bella and whatever stood at the end of the table. Sylvie’s hand found Bella’s arm in the dark and gripped it. Bella focused on the warmth of her mother’s hand as if it were the most real thing in the room.</p>
+
+<p><em>You’re not welcome here. Go away.</em></p>
+
+<p>She started reciting — the same words as before, low and relentless, filling the room, displacing it syllable by syllable.</p>
+
+<p>The demon laughed. The scalpel moved again — faster this time, less deliberate — and opened a deep gash across Bella’s arm. Astrid’s face had changed, the smile gone, replaced with something far uglier.</p>
+
+<p>The recitation was irritating it. It hissed and backed away as if being stung.</p>
+
+<p>Her mother kept reciting.</p>
+
+<p>The lights above them shattered one by one, glass raining down onto the floor around the table. The darkness that replaced them was absolute except for a faint glow around Sylvie.</p>
+
+<p><em>You think that’s going to help her? She’s mine!</em></p>
+
+<p>The demon lunged. Not at Bella — at Sylvie. An invisible force struck her mother across the shoulder. Sylvie staggered but didn’t stop. Her voice wavered for just a moment and then steadied and kept going. Blood appeared on her mother’s lip, split open by the blow.</p>
+
+<p><em>Get away from her. I command you, Pazu, leave!</em></p>
+
+<p>The demon heard its name and howled.</p>
+
+<p>An inhuman sound — ancient and cornered and furious, filling every surface of the room simultaneously — and then silence.</p>
+
+<p>The morgue dissolved.</p>
+
+<p>Bella was on the bedroom floor, her back against the bed frame, her mother kneeling beside her with both hands on her face. The apartment was warm. The lamps were on. Outside, rain lashed against the windows.</p>
+
+<p>Sylvie’s lip was bleeding. Her forearm had a long shallow cut running from wrist to elbow, already darkening at the edges. She was breathing hard but her hands on Bella’s face were steady.</p>
+
+<p><em>Mama,</em> Bella said. Her voice came out as a whisper. <em>Your arm—</em></p>
+
+<p><em>It will heal,</em> Sylvie said.</p>
+
+<p><em>Is it gone?</em></p>
+
+<p>Her mother was quiet for a beat too long.</p>
+
+<p><em>For now,</em> she said.</p>
+
+<p>She helped Bella up. She cleaned and dressed the cut on Bella’s cheek and the gash on her arm without speaking. They sat together at the kitchen table and drank tea that went cold before either of them touched it.</p>
+
+<p>That night, Bella had a dreamless sleep.</p>
+
+<p>And the night after. And the one after that.</p>
+
+<hr>
+
+<p>She went back to work on a Thursday. She cleared her backlog, ate lunch at her desk, nodded at colleagues whose names she was finally starting to learn. She used the bathroom on the second floor without thinking about it. She walked the seven minutes to work without looking over her shoulder.</p>
+
+<p>She was fine.</p>
+
+<p>She told herself she was fine and for the first time she almost believed it.</p>
+
+<p>It was on a Friday afternoon, three weeks later, that she found out about Lena.</p>
+
+<p>It came through a detective she’d spoken to during the Astrid case — a courtesy call, he said, to close the loop. The sister who had filed the missing persons report had been found dead in her apartment two days ago. No signs of forced entry. No visible trauma. Toxicology was pending but the preliminary finding pointed to cyanide poisoning. Self-administered, they believed.</p>
+
+<p>Bella wrote down the details without speaking.</p>
+
+<p>She asked one question before she hung up: the sister’s name.</p>
+
+<p>Lena Karlsdóttir. Eighteen years old.</p>
+
+<p>Bella sat at her desk for a long time. She thought about a nine-year-old girl being held underwater in a bathtub. She thought about a mother turning her own child away from a door three times and telling herself it was love. She thought about Lena — eighteen, carrying all of it alone, carrying what she had done, carrying what she knew — and deciding quietly that it was enough.</p>
+
+<p>She thought about the missing persons report Lena had filed. The one that had put Astrid on her table. The one that had started all of this.</p>
+
+<p>Lena had no idea what she’d set in motion.</p>
+
+<p>She was just a girl trying to give her dead sister a name.</p>
+
+<hr>
+
+<p>The new body came in the following Tuesday.</p>
+
+<p>Jane Doe. Female. Late twenties. Found in a downtown alley. No visible trauma. No ID.</p>
+
+<p>Bella snapped on her gloves and got to work.</p>
+
+<p>The external examination gave her nothing. The skin was unmarked — perfect porcelain, the kind of skin that had never been touched by anything. The organs were immaculate. She worked methodically, carefully, moving through each step without thinking about anything except the work in front of her.</p>
+
+<p>She saved the mouth for last.</p>
+
+<p>As soon as she opened it, she stopped.</p>
+
+<p>The tongue was gone. Not removed post-mortem — the tissue at the base had healed smooth and deliberate, as though the body had been given time to close around the absence.</p>
+
+<p>Bella set down her instrument.</p>
+
+<p>She stood very still for a long moment. The morgue hummed around her, fluorescent and cold and indifferent. Somewhere in the building a door opened and closed. Somewhere outside the city went about its business.</p>
+
+<p>She looked at the hands.</p>
+
+<p>The nails were rotting, flesh peeling.</p>
+
+</article>
+
+<div class="story-end">
+  <p>Thank you for reading.</p>
+  <a href="/#fiction" class="btn-lime">Back to Fiction</a>
+</div>
+
+<footer>
+  <a href="/" class="logo">Unwritten Logic</a>
+  <div class="footer-links">
+    <a href="/#about">About</a>
+    <a href="/#work">Writing</a>
+    <a href="/#fiction">Fiction</a>
+    <a href="/#contact">Contact</a>
+  </div>
+  <p>© 2018 Unwritten Logic. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
